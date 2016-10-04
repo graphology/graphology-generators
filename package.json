@@ -1,0 +1,46 @@
+{
+  "name": "graphology-generators",
+  "version": "0.0.1",
+  "description": "Various graph generators for graphology.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "classic"
+  ],
+  "scripts": {
+    "lint": "eslint *.js",
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graphology/graphology-generators.git"
+  },
+  "keywords": [
+    "graph",
+    "graphology",
+    "generators"
+  ],
+  "author": {
+    "name": "Guillaume Plique",
+    "url": "http://github.com/Yomguithereal"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/graphology/graphology-generators/issues"
+  },
+  "homepage": "https://github.com/graphology/graphology-generators#readme",
+  "devDependencies": {
+    "@yomguithereal/eslint-config": "^3.0.0",
+    "eslint": "^3.5.0",
+    "graphology": "0.1.0",
+    "mocha": "^3.0.2"
+  },
+  "eslintConfig": {
+    "extends": "@yomguithereal/eslint-config"
+  },
+  "dependencies": {
+    "graphology-utils": "^1.1.1",
+    "js-combinatorics": "^0.5.2",
+    "lodash": "^4.16.3"
+  }
+}
