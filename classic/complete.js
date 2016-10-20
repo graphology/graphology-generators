@@ -25,22 +25,28 @@ module.exports = function complete(GraphClass, n) {
   var graph = new GraphClass();
 
   if (n > 1) {
-    var method = graph.type === 'undirected' ? combinations : permutations,
-        iterator = method(range(n), 2),
-        key,
-        path;
+    var r = range(n);
 
-    while ((path = iterator.next())) {
+    if (graph.type === 'mixed' || graph.type === 'undirected') {
+      var iterator = combinations(r, 2),
+          key,
+          path;
 
-      if (!graph.hasNode(path[0]))
-        graph.addNode(path[0]);
+      while ((path = iterator.next())) {
+        key = path[0] + '<->' + path[1];
+        graph.mergeUndirectedEdgeWithKey(key, path[0], path[1]);
+      }
+    }
 
-      if (!graph.hasNode(path[1]))
-        graph.addNode(path[1]);
+    if (graph.type === 'mixed' || graph.type === 'directed') {
+      var iterator = permutations(r, 2),
+          key,
+          path;
 
-      key = path[0] + '->' + path[1];
-
-      graph.addEdgeWithKey(key, path[0], path[1]);
+      while ((path = iterator.next())) {
+        key = path[0] + '->' + path[1];
+        graph.mergeDirectedEdgeWithKey(key, path[0], path[1]);
+      }
     }
   }
 

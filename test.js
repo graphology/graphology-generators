@@ -5,7 +5,8 @@
 var assert = require('assert'),
     Graph = require('graphology');
 
-var UndirectedGraph = Graph.UndirectedGraph;
+var UndirectedGraph = Graph.UndirectedGraph,
+    DirectedGraph = Graph.DirectedGraph;
 
 var classic = require('./classic');
 
@@ -22,12 +23,20 @@ describe('graphology-generators', function() {
       });
 
       it('should return a complete graph.', function() {
-        var graph = classic.complete(UndirectedGraph, 5);
+        var undirectedGraph = classic.complete(UndirectedGraph, 5);
+
+        assert.strictEqual(undirectedGraph.order, 5);
+        assert.strictEqual(undirectedGraph.size, 5 * (5 - 1) / 2);
+
+        var directedGraph = classic.complete(DirectedGraph, 5);
+
+        assert.strictEqual(directedGraph.order, 5);
+        assert.strictEqual(directedGraph.size, 5 * (5 - 1));
+
+        var graph = classic.complete(Graph, 5);
 
         assert.strictEqual(graph.order, 5);
-        assert.strictEqual(graph.size, 10);
-
-        console.log(graph);
+        assert.strictEqual(graph.size, (5 * (5 - 1) / 2) + (5 * (5 - 1)));
       });
     });
   });
