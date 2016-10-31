@@ -1,11 +1,12 @@
 {
   "name": "graphology-generators",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Various graph generators for graphology.",
   "main": "index.js",
   "files": [
     "index.js",
-    "classic"
+    "classic",
+    "random"
   ],
   "scripts": {
     "lint": "eslint *.js",
@@ -18,7 +19,8 @@
   "keywords": [
     "graph",
     "graphology",
-    "generators"
+    "generators",
+    "erdos renyi"
   ],
   "author": {
     "name": "Guillaume Plique",
@@ -33,7 +35,8 @@
     "@yomguithereal/eslint-config": "^3.0.0",
     "eslint": "^3.5.0",
     "graphology": "0.2.0",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "seedrandom": "^2.4.2"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config"

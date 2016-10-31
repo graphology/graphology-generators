@@ -3,12 +3,16 @@
  * ============================
  */
 var assert = require('assert'),
-    Graph = require('graphology');
+    Graph = require('graphology'),
+    seedrandom = require('seedrandom');
 
 var UndirectedGraph = Graph.UndirectedGraph,
     DirectedGraph = Graph.DirectedGraph;
 
-var classic = require('./classic');
+var rng = seedrandom('test');
+
+var classic = require('./classic'),
+    random = require('./random');
 
 describe('graphology-generators', function() {
 
@@ -37,6 +41,40 @@ describe('graphology-generators', function() {
 
         assert.strictEqual(graph.order, 5);
         assert.strictEqual(graph.size, (5 * (5 - 1) / 2) + (5 * (5 - 1)));
+      });
+    });
+  });
+
+  describe('random', function() {
+
+    describe('#.erdosRenyi', function() {
+
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          random.erdosRenyi(Array);
+        }, /constructor/);
+      });
+
+      it('should return a graph without edges if probability is 0.', function() {
+        var graph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0});
+
+        assert.strictEqual(graph.order, 5);
+        assert.strictEqual(graph.size, 0);
+        assert.deepEqual(graph.nodes(), [0, 1, 2, 3, 4]);
+      });
+
+      it('should return a binomial graph.', function() {
+        var undirectedGraph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0.5, rng: rng});
+
+        assert.strictEqual(undirectedGraph.size, 7);
+
+        var directedGraph = random.erdosRenyi(DirectedGraph, {n: 5, probability: 0.5, rng: rng});
+
+        assert.strictEqual(directedGraph.size, 8);
+
+        var graph = random.erdosRenyi(Graph, {n: 5, probability: 0.5, rng: rng});
+
+        assert.strictEqual(graph.size, 16);
       });
     });
   });

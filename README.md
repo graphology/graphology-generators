@@ -12,10 +12,14 @@ npm install graphology-generators
 
 * [Classic graphs](#classic-graphs)
   - [Complete](#complete)
+* [Random graphs](#random-graphs)
+  - [Erdos-Renyi](#erdos-renyi)
 
 ### Classic graphs
 
 #### Complete
+
+Creates a [complete](https://en.wikipedia.org/wiki/Complete_graph) graph. 
 
 ```js
 import Graph, {UndirectedGraph} from 'graphology';
@@ -34,3 +38,27 @@ const graph = complete(UndirectedGraph, 10);
 
 * **constructor** *Class*: a `graphology` constructor.
 * **n** *number*: number of nodes of the generated graph.
+
+### Random graphs
+
+#### Erdos-Renyi
+
+Creates an [Erdos-Renyi](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model), or binomial graph.
+
+```js
+import Graph, {UndirectedGraph} from 'graphology';
+import {erdosRenyi} from 'graphology-generators/random';
+// Alternatively, if you only want to load relevant code
+import erdosRenyi from 'graphology-generators/random/erdos-renyi';
+
+// Creating a binomial graph
+const graph = erdosRenyi(Graph, {n: 10, probability: 0.5});
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **options** *object*: options:
+  - **n** *number*: number of nodes of the generated graph.
+  - **probability** *number*: probability for edge creation.
+  - **rng** *function*: custom RNG function.
