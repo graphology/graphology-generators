@@ -6,7 +6,8 @@
   "files": [
     "index.js",
     "classic",
-    "random"
+    "random",
+    "social"
   ],
   "scripts": {
     "lint": "eslint *.js",

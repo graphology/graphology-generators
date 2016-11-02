@@ -12,7 +12,8 @@ var UndirectedGraph = Graph.UndirectedGraph,
 var rng = seedrandom('test');
 
 var classic = require('./classic'),
-    random = require('./random');
+    random = require('./random'),
+    social = require('./social');
 
 describe('graphology-generators', function() {
 
@@ -75,6 +76,23 @@ describe('graphology-generators', function() {
         var graph = random.erdosRenyi(Graph, {n: 5, probability: 0.5, rng: rng});
 
         assert.strictEqual(graph.size, 16);
+      });
+    });
+  });
+
+  describe('social', function() {
+
+    describe('#.karate', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          social.karate(Array);
+        }, /constructor/);
+      });
+
+      it('should return Zachary\'s karate club graph.', function() {
+        const graph = social.karate(Graph);
+
+        console.log(graph);
       });
     });
   });
