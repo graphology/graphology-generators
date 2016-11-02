@@ -1,6 +1,6 @@
 {
   "name": "graphology-generators",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Various graph generators for graphology.",
   "main": "index.js",
   "files": [
@@ -21,7 +21,8 @@
     "graph",
     "graphology",
     "generators",
-    "erdos renyi"
+    "erdos renyi",
+    "karate club"
   ],
   "author": {
     "name": "Guillaume Plique",

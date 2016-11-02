@@ -14,6 +14,8 @@ npm install graphology-generators
   - [Complete](#complete)
 * [Random graphs](#random-graphs)
   - [Erdos-Renyi](#erdos-renyi)
+* [Social graphs](#social-graphs)
+  - [Karate Club](#karate-club)
 
 ### Classic graphs
 
@@ -62,3 +64,23 @@ const graph = erdosRenyi(Graph, {n: 10, probability: 0.5});
   - **n** *number*: number of nodes of the generated graph.
   - **probability** *number*: probability for edge creation.
   - **rng** *function*: custom RNG function.
+
+### Social graphs
+
+#### Karate Club
+
+Returns [Zachary's karate club](https://en.wikipedia.org/wiki/Zachary%27s_karate_club) graph.
+
+```js
+import Graph from 'graphology';
+import {karateClub} from 'graphology-generators/karate-club';
+// Alternatively, if you only want to load relevant code
+import karateClub from 'graphology-generators/social/karate-club';
+
+// Creating a binomial graph
+const graph = karateClub(Graph);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.

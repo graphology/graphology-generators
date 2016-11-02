@@ -85,14 +85,15 @@ describe('graphology-generators', function() {
     describe('#.karate', function() {
       it('should throw if the provided constructor is invalid.', function() {
         assert.throws(function() {
-          social.karate(Array);
+          social.karateClub(Array);
         }, /constructor/);
       });
 
       it('should return Zachary\'s karate club graph.', function() {
-        const graph = social.karate(Graph);
+        var graph = social.karateClub(Graph);
 
-        console.log(graph);
+        assert.strictEqual(graph.order, 34);
+        assert.strictEqual(graph.size, 78);
       });
     });
   });

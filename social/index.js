@@ -4,4 +4,4 @@
  *
  * Social graph generators endpoint.
  */
-exports.karate = require('./karate.js');
+exports.karateClub = require('./karate-club.js');

@@ -61,7 +61,7 @@ var CLUB1 = new Set([
  * @param  {Class} GraphClass    - The Graph Class to instantiate.
  * @return {Graph}
  */
-module.exports = function karate(GraphClass, options) {
+module.exports = function karateClub(GraphClass, options) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/social/karate: invalid Graph constructor.');
 
@@ -84,7 +84,7 @@ module.exports = function karate(GraphClass, options) {
   for (row = 0, l = DATA.length; row < l; row++) {
     line = DATA[row].split('');
 
-    for (column = 0, m = line.length; column < m; column++) {
+    for (column = row + 1, m = line.length; column < m; column++) {
       entry = +line[column];
 
       if (entry)
