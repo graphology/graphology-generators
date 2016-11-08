@@ -23,20 +23,20 @@ var permutations = combinatorics.permutation,
  */
 module.exports = function erdosRenyi(GraphClass, options) {
   if (!isGraphConstructor(GraphClass))
-    throw new Error('graphology-generators/classic/erdos-renyi: invalid Graph constructor.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid Graph constructor.');
 
   var n = options.n,
       probability = options.probability,
       rng = options.rng || Math.random;
 
   if (typeof n !== 'number' || n <= 0)
-    throw new Error('graphology-generators/classic/erdos-renyi: invalid `n`. Should be a positive number.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `n`. Should be a positive number.');
 
   if (typeof probability !== 'number' || probability < 0 || probability > 1)
-    throw new Error('graphology-generators/classic/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
 
   if (typeof rng !== 'function')
-    throw new Error('graphology-generators/classic/erdos-renyi: invalid `rng`. Should be a function.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `rng`. Should be a function.');
 
   var graph = new GraphClass();
   graph.addNodesFrom(range(n));

@@ -78,6 +78,22 @@ describe('graphology-generators', function() {
         assert.strictEqual(graph.size, 16);
       });
     });
+
+    describe('#.girvanNewman', function() {
+
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          random.girvanNewman(Array);
+        }, /constructor/);
+      });
+
+      it('should return the expected graph.', function() {
+        var graph = random.girvanNewman(Graph, {zOut: 4, rng: rng});
+
+        assert.strictEqual(graph.order, 128);
+        assert.strictEqual(graph.size, 1041);
+      });
+    });
   });
 
   describe('social', function() {
