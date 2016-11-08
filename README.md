@@ -72,7 +72,7 @@ const graph = erdosRenyi(Graph, {n: 10, probability: 0.5});
 
 Creates a [Girvan-Newman](http://www.pnas.org/content/99/12/7821.full.pdf) random graph as described in:
 
-*Community Structure in  social and biological networks. Girvan Newman, 2002. PNAS June, vol 99 n 12*
+> Community Structure in  social and biological networks. Girvan Newman, 2002. PNAS June, vol 99 n 12
 
 ```js
 import Graph from 'graphology';
