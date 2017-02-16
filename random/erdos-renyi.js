@@ -5,11 +5,11 @@
  * Function generating binomial graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    combinatorics = require('js-combinatorics'),
+    generatorics = require('generatorics'),
     range = require('lodash/range');
 
-var permutations = combinatorics.permutation,
-    combinations = combinatorics.combination;
+var permutations = generatorics.permutation,
+    combinations = generatorics.combination;
 
 /**
  * Generates a binomial graph graph with n nodes.
@@ -48,11 +48,13 @@ module.exports = function erdosRenyi(GraphClass, options) {
     var r = range(n);
 
     if (graph.type === 'mixed' || graph.type === 'undirected') {
-      var iterator = combinations(r, 2),
+      var iterator = generatorics.combination(r, 2),
           key,
-          path;
+          path,
+          step;
 
-      while ((path = iterator.next())) {
+      while ((step = iterator.next(), !step.done)) {
+        path = step.value;
 
         if (rng() < probability) {
           key = path[0] + '<->' + path[1];
@@ -62,11 +64,13 @@ module.exports = function erdosRenyi(GraphClass, options) {
     }
 
     if (graph.type === 'mixed' || graph.type === 'directed') {
-      var iterator = permutations(r, 2),
+      var iterator = generatorics.permutation(r, 2),
           key,
-          path;
+          path,
+          step;
 
-      while ((path = iterator.next())) {
+      while ((step = iterator.next(), !step.done)) {
+        path = step.value;
 
         if (rng() < probability) {
           key = path[0] + '->' + path[1];

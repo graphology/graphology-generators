@@ -1,6 +1,6 @@
 {
   "name": "graphology-generators",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Various graph generators for graphology.",
   "main": "index.js",
   "files": [
@@ -45,8 +45,8 @@
     "extends": "@yomguithereal/eslint-config"
   },
   "dependencies": {
+    "generatorics": "^1.1.0",
     "graphology-utils": "^1.1.1",
-    "js-combinatorics": "^0.5.2",
     "lodash": "^4.16.3"
   }
 }

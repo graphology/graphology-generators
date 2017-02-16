@@ -9,7 +9,9 @@ var assert = require('assert'),
 var UndirectedGraph = Graph.UndirectedGraph,
     DirectedGraph = Graph.DirectedGraph;
 
-var rng = seedrandom('test');
+var rng = function() {
+  return seedrandom('test');
+};
 
 var classic = require('./classic'),
     random = require('./random'),
@@ -65,17 +67,17 @@ describe('graphology-generators', function() {
       });
 
       it('should return a binomial graph.', function() {
-        var undirectedGraph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0.5, rng: rng});
+        var undirectedGraph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(undirectedGraph.size, 7);
 
-        var directedGraph = random.erdosRenyi(DirectedGraph, {n: 5, probability: 0.5, rng: rng});
+        var directedGraph = random.erdosRenyi(DirectedGraph, {n: 5, probability: 0.5, rng: rng()});
 
-        assert.strictEqual(directedGraph.size, 8);
+        assert.strictEqual(directedGraph.size, 11);
 
-        var graph = random.erdosRenyi(Graph, {n: 5, probability: 0.5, rng: rng});
+        var graph = random.erdosRenyi(Graph, {n: 5, probability: 0.5, rng: rng()});
 
-        assert.strictEqual(graph.size, 16);
+        assert.strictEqual(graph.size, 15);
       });
     });
 
@@ -88,10 +90,10 @@ describe('graphology-generators', function() {
       });
 
       it('should return the expected graph.', function() {
-        var graph = random.girvanNewman(Graph, {zOut: 4, rng: rng});
+        var graph = random.girvanNewman(Graph, {zOut: 4, rng: rng()});
 
         assert.strictEqual(graph.order, 128);
-        assert.strictEqual(graph.size, 1041);
+        assert.strictEqual(graph.size, 1042);
       });
     });
   });
