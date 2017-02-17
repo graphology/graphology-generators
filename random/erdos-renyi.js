@@ -61,7 +61,7 @@ module.exports = function erdosRenyi(GraphClass, options) {
     }
 
     if (graph.type === 'mixed' || graph.type === 'directed') {
-      var iterator = generatorics.permutation(r, 2),
+      var iterator = generatorics.combination(r, 2),
           key,
           path,
           step;
@@ -72,6 +72,11 @@ module.exports = function erdosRenyi(GraphClass, options) {
         if (rng() < probability) {
           key = path[0] + '->' + path[1];
           graph.mergeDirectedEdgeWithKey(key, path[0], path[1]);
+        }
+
+        if (rng() < probability) {
+          key = path[1] + '->' + path[0];
+          graph.mergeDirectedEdgeWithKey(key, path[1], path[0]);
         }
       }
     }
