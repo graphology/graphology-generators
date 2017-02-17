@@ -8,9 +8,6 @@ var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
     generatorics = require('generatorics'),
     range = require('lodash/range');
 
-var permutations = generatorics.permutation,
-    combinations = generatorics.combination;
-
 /**
  * Generates a binomial graph graph with n nodes.
  *
