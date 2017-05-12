@@ -5,7 +5,7 @@
  * Function generating complete graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    generatorics = require('generatorics'),
+    combinations = require('obliterator/combinations'),
     range = require('lodash/range');
 
 /**
@@ -21,37 +21,24 @@ module.exports = function complete(GraphClass, n) {
 
   var graph = new GraphClass();
 
+  for (var i = 0; i < n; i++)
+    graph.addNode(i);
+
   if (n > 1) {
-    var r = range(n);
+    var iterator = combinations(range(n), 2),
+        path,
+        step,
+        path;
 
-    if (graph.type === 'mixed' || graph.type === 'undirected') {
-      var iterator = generatorics.combination(r, 2),
-          key,
-          path,
-          step;
+    while ((step = iterator.next(), !step.done)) {
+      path = step.value;
 
-      while ((step = iterator.next(), !step.done)) {
-        path = step.value;
+      if (graph.type !== 'directed')
+        graph.addUndirectedEdge(path[0], path[1]);
 
-        key = path[0] + '<->' + path[1];
-        graph.mergeUndirectedEdgeWithKey(key, path[0], path[1]);
-      }
-    }
-
-    if (graph.type === 'mixed' || graph.type === 'directed') {
-      var iterator = generatorics.combination(r, 2),
-          key,
-          path,
-          step;
-
-      while ((step = iterator.next(), !step.done)) {
-        path = step.value;
-
-        key = path[0] + '->' + path[1];
-        graph.mergeDirectedEdgeWithKey(key, path[0], path[1]);
-
-        key = path[1] + '->' + path[0];
-        graph.mergeDirectedEdgeWithKey(key, path[1], path[0]);
+      if (graph.type !== 'undirected') {
+        graph.addDirectedEdge(path[0], path[1]);
+        graph.addDirectedEdge(path[1], path[0]);
       }
     }
   }

@@ -5,7 +5,7 @@
  * Function generating binomial graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    generatorics = require('generatorics'),
+    combinations = require('obliterator/combinations'),
     range = require('lodash/range');
 
 /**
@@ -36,48 +36,34 @@ module.exports = function erdosRenyi(GraphClass, options) {
     throw new Error('graphology-generators/random/erdos-renyi: invalid `rng`. Should be a function.');
 
   var graph = new GraphClass();
-  graph.addNodesFrom(range(n));
+
+  for (var i = 0; i < n; i++)
+    graph.addNode(i);
 
   if (probability <= 0)
     return graph;
 
   if (n > 1) {
-    var r = range(n);
+    var iterator = combinations(range(n), 2),
+        path,
+        step,
+        path;
 
-    if (graph.type === 'mixed' || graph.type === 'undirected') {
-      var iterator = generatorics.combination(r, 2),
-          key,
-          path,
-          step;
+    while ((step = iterator.next(), !step.done)) {
+      path = step.value;
 
-      while ((step = iterator.next(), !step.done)) {
-        path = step.value;
-
-        if (rng() < probability) {
-          key = path[0] + '<->' + path[1];
-          graph.mergeUndirectedEdgeWithKey(key, path[0], path[1]);
-        }
+      if (graph.type !== 'directed') {
+        if (rng() < probability)
+          graph.addUndirectedEdge(path[0], path[1]);
       }
-    }
 
-    if (graph.type === 'mixed' || graph.type === 'directed') {
-      var iterator = generatorics.combination(r, 2),
-          key,
-          path,
-          step;
+      if (graph.type !== 'undirected') {
 
-      while ((step = iterator.next(), !step.done)) {
-        path = step.value;
+        if (rng() < probability)
+          graph.addDirectedEdge(path[0], path[1]);
 
-        if (rng() < probability) {
-          key = path[0] + '->' + path[1];
-          graph.mergeDirectedEdgeWithKey(key, path[0], path[1]);
-        }
-
-        if (rng() < probability) {
-          key = path[1] + '->' + path[0];
-          graph.mergeDirectedEdgeWithKey(key, path[1], path[0]);
-        }
+        if (rng() < probability)
+          graph.addDirectedEdge(path[1], path[0]);
       }
     }
   }
