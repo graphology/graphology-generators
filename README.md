@@ -72,8 +72,8 @@ const graph = clusters(Graph, {
   - **order** *number*: number of nodes of the generated graph.
   - **size** *number*: number of edges of the generated graph.
   - **clusters** *number*: number of clusters of the generated graph.
-  - **density** *number*: Probability that an edge will link two nodes of the same cluster.
-  - **rng** *function*: custom RNG function.
+  - **density** *?number* [`0.5`]: Probability that an edge will link two nodes of the same cluster.
+  - **rng** *?function*: custom RNG function.
 
 #### Erdos-Renyi
 
@@ -95,7 +95,7 @@ const graph = erdosRenyi(Graph, {n: 10, probability: 0.5});
 * **options** *object*: options:
   - **n** *number*: number of nodes of the generated graph.
   - **probability** *number*: probability for edge creation.
-  - **rng** *function*: custom RNG function.
+  - **rng** *?function*: custom RNG function.
 
 #### Girvan-Newman
 
@@ -118,7 +118,7 @@ const graph = girvanNewman(Graph, {zOut: 4});
 * **constructor** *Class*: a `graphology` constructor.
 * **options** *object*: options:
   - **zOut** *number*: *zout* parameter.
-  - **rng** *function*: custom RNG function.
+  - **rng** *?function*: custom RNG function.
 
 ### Social graphs
 
