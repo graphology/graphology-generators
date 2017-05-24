@@ -28,7 +28,7 @@ module.exports = function girvanNewman(GraphClass, options) {
     throw new Error('graphology-generators/random/girvan-newman: invalid Graph constructor.');
 
   var zOut = options.zOut,
-      rng = options.rng;
+      rng = options.rng || Math.random;
 
   if (typeof zOut !== 'number')
     throw new Error('graphology-generators/random/girvan-newman: invalid `zOut`. Should be a number.');
