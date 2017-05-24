@@ -50,6 +50,68 @@ describe('graphology-generators', function() {
 
   describe('random', function() {
 
+    describe('#.clusters', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          random.clusters(Array);
+        }, /constructor/);
+      });
+
+      it('should throw if the options are invalid.', function() {
+        assert.throws(function() {
+          random.clusters(UndirectedGraph);
+        }, /order/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: null});
+        }, /density/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {rng: true});
+        }, /rng/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5});
+        }, /order/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: -10});
+        }, /density/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5, order: 30});
+        }, /size/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5, order: -30});
+        }, /order/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: 100});
+        }, /clusters/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: -500});
+        }, /size/);
+
+        assert.throws(function() {
+          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: 100, clusters: -4});
+        }, /clusters/);
+      });
+
+      it('should generate a correct graph.', function() {
+        var graph = random.clusters(DirectedGraph, {
+          order: 5,
+          size: 20,
+          clusters: 3,
+          rng: rng()
+        });
+
+        assert.strictEqual(graph.order, 5);
+        assert.strictEqual(graph.size, 6);
+      });
+    });
+
     describe('#.erdosRenyi', function() {
 
       it('should throw if the provided constructor is invalid.', function() {

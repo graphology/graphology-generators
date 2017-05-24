@@ -15,6 +15,7 @@ npm install graphology-generators
 * [Classic graphs](#classic-graphs)
   - [Complete](#complete)
 * [Random graphs](#random-graphs)
+  - [Clusters](#clusters)
   - [Erdos-Renyi](#erdos-renyi)
   - [Girvan-Newman](#girvan-newman)
 * [Social graphs](#social-graphs)
@@ -45,6 +46,34 @@ const graph = complete(UndirectedGraph, 10);
 * **n** *number*: number of nodes of the generated graph.
 
 ### Random graphs
+
+#### Clusters
+
+Creates a graph with the desired number of nodes & edges and having a given number of clusters.
+
+```js
+import Graph from 'graphology';
+import {clusters} from 'graphology-generators/random';
+// Alternatively, if you only want to load relevant code
+import clusters from 'graphology-generators/random/clusters';
+
+// Creating a random clustered graph
+const graph = clusters(Graph, {
+  order: 100,
+  size: 1000,
+  clusters: 5
+});
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **options** *object*: options:
+  - **order** *number*: number of nodes of the generated graph.
+  - **size** *number*: number of edges of the generated graph.
+  - **clusters** *number*: number of clusters of the generated graph.
+  - **density** *number*: Probability that an edge will link two nodes of the same cluster.
+  - **rng** *function*: custom RNG function.
 
 #### Erdos-Renyi
 
