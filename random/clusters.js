@@ -53,17 +53,17 @@ module.exports = function(GraphClass, options) {
   // Creating graph
   var graph = new GraphClass();
 
+  // Adding nodes
+  if (!N)
+    return graph;
+
   // Initializing clusters
-  var clusters = new Array(clusters),
+  var clusters = new Array(C),
       cluster,
       i;
 
   for (i = 0; i < C; i++)
     clusters[i] = [];
-
-  // Adding nodes
-  if (!N)
-    return graph;
 
   for (i = 0; i < N; i++) {
     cluster = (rng() * C) | 0;
