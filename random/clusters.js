@@ -60,6 +60,7 @@ module.exports = function(GraphClass, options) {
   // Initializing clusters
   var clusters = new Array(C),
       cluster,
+      nodes,
       i;
 
   for (i = 0; i < C; i++)
@@ -93,7 +94,8 @@ module.exports = function(GraphClass, options) {
     // Adding a link between two nodes from the same cluster
     else {
       cluster = (rng() * C) | 0;
-      l = clusters[cluster].length;
+      nodes = clusters[cluster];
+      l = nodes.length;
 
       if (!l || l < 2) {
 
@@ -102,10 +104,10 @@ module.exports = function(GraphClass, options) {
         continue;
       }
 
-      source = (rng() * l) | 0;
+      source = nodes[(rng() * l) | 0];
 
       do {
-        target = (rng() * l) | 0;
+        target = nodes[(rng() * l) | 0];
       } while (source === target)
     }
 
