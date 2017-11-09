@@ -140,6 +140,8 @@ describe('graphology-generators', function() {
       });
 
       it('should return a binomial graph.', function() {
+
+        // Undirected
         var undirectedGraph = random.erdosRenyi(UndirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(undirectedGraph.size, 7);
@@ -150,6 +152,7 @@ describe('graphology-generators', function() {
         assert.strictEqual(undirectedGraph.size, 4);
         assert.strictEqual(undirectedGraph.order, 5);
 
+        // Directed
         var directedGraph = random.erdosRenyi(DirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(directedGraph.size, 11);
@@ -160,11 +163,13 @@ describe('graphology-generators', function() {
         assert.strictEqual(directedGraph.size, 11);
         assert.strictEqual(directedGraph.order, 5);
 
+        // Mixed
         var graph = random.erdosRenyi(Graph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(graph.size, 15);
         assert.strictEqual(graph.order, 5);
 
+        // Sparse
         graph = sparse(Graph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(graph.size, 14);
