@@ -174,6 +174,17 @@ describe('graphology-generators', function() {
 
         assert.strictEqual(graph.size, 14);
         assert.strictEqual(graph.order, 5);
+
+        // Approximate size
+        graph = random.erdosRenyi(Graph, {order: 5, approximateSize: 10, rng: rng()});
+
+        assert.strictEqual(graph.size, 8);
+        assert.strictEqual(graph.order, 5);
+
+        graph = sparse(Graph, {order: 5, approximateSize: 10, rng: rng()});
+
+        assert.strictEqual(graph.size, 10);
+        assert.strictEqual(graph.order, 5);
       });
     });
 

@@ -98,7 +98,8 @@ const graph = erdosRenyi.sparse(Graph, {order: 1000, probability: 0.1});
 * **constructor** *Class*: a `graphology` constructor.
 * **options** *object*: options:
   - **order** *number*: number of nodes of the generated graph.
-  - **probability** *number*: probability for edge creation.
+  - **probability** *number*: probability for edge creation. (i.e. density you try to approximate in the generated graph).
+  - **approximateSize**: alternatively, you can pass an approximate number of edges you are trying to get in the generated graph.
   - **rng** *?function*: custom RNG function.
 
 #### Girvan-Newman

@@ -6,7 +6,8 @@
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
     combinations = require('obliterator/combinations'),
-    range = require('lodash/range');
+    range = require('lodash/range'),
+    density = require('graphology-metrics/density');
 
 /**
  * Generates a binomial graph graph with n nodes.
@@ -26,18 +27,22 @@ function erdosRenyi(GraphClass, options) {
       probability = options.probability,
       rng = options.rng || Math.random;
 
+  var graph = new GraphClass();
+
   // If user gave a size, we need to compute probability
+  if (typeof options.approximateSize === 'number') {
+    var densityFunction = density[graph.type + 'Density'];
+    probability = densityFunction(order, options.approximateSize);
+  }
 
   if (typeof order !== 'number' || order <= 0)
     throw new Error('graphology-generators/random/erdos-renyi: invalid `order`. Should be a positive number.');
 
   if (typeof probability !== 'number' || probability < 0 || probability > 1)
-    throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1. Or maybe you gave an `approximateSize` exceeding the graph\'s density.');
 
   if (typeof rng !== 'function')
     throw new Error('graphology-generators/random/erdos-renyi: invalid `rng`. Should be a function.');
-
-  var graph = new GraphClass();
 
   for (var i = 0; i < order; i++)
     graph.addNode(i);
@@ -92,16 +97,22 @@ function erdosRenyiSparse(GraphClass, options) {
       probability = options.probability,
       rng = options.rng || Math.random;
 
+  var graph = new GraphClass();
+
+  // If user gave a size, we need to compute probability
+  if (typeof options.approximateSize === 'number') {
+    var densityFunction = density[graph.type + 'Density'];
+    probability = densityFunction(order, options.approximateSize);
+  }
+
   if (typeof order !== 'number' || order <= 0)
     throw new Error('graphology-generators/random/erdos-renyi: invalid `order`. Should be a positive number.');
 
   if (typeof probability !== 'number' || probability < 0 || probability > 1)
-    throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1. Or maybe you gave an `approximateSize` exceeding the graph\'s density.');
 
   if (typeof rng !== 'function')
     throw new Error('graphology-generators/random/erdos-renyi: invalid `rng`. Should be a function.');
-
-  var graph = new GraphClass();
 
   for (var i = 0; i < order; i++)
     graph.addNode(i);
