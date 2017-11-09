@@ -43,7 +43,7 @@ const graph = complete(UndirectedGraph, 10);
 **Arguments**
 
 * **constructor** *Class*: a `graphology` constructor.
-* **n** *number*: number of nodes of the generated graph.
+* **order** *number*: number of nodes in the generated graph.
 
 ### Random graphs
 
@@ -86,18 +86,18 @@ import {erdosRenyi} from 'graphology-generators/random';
 import erdosRenyi from 'graphology-generators/random/erdos-renyi';
 
 // Creating a binomial graph
-const graph = erdosRenyi(Graph, {n: 10, probability: 0.5});
+const graph = erdosRenyi(Graph, {order: 10, probability: 0.5});
 
-// If your graph is sparse (low probability), you can use the `fast` version
+// If your graph is sparse (low probability), you can use the `sparse` version
 // which runs in O(m + n) rather than O(n^2)
-const graph = erdosRenyi.fast(Graph, {n: 1000, probability: 0.1});
+const graph = erdosRenyi.sparse(Graph, {order: 1000, probability: 0.1});
 ```
 
 **Arguments**
 
 * **constructor** *Class*: a `graphology` constructor.
 * **options** *object*: options:
-  - **n** *number*: number of nodes of the generated graph.
+  - **order** *number*: number of nodes of the generated graph.
   - **probability** *number*: probability for edge creation.
   - **rng** *?function*: custom RNG function.
 

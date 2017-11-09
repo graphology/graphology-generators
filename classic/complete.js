@@ -12,20 +12,20 @@ var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
  * Generates a complete graph with n nodes.
  *
  * @param  {Class}  GraphClass - The Graph Class to instantiate.
- * @param  {number} n          - Number of nodes of the graph.
+ * @param  {number} order      - Number of nodes of the graph.
  * @return {Graph}
  */
-module.exports = function complete(GraphClass, n) {
+module.exports = function complete(GraphClass, order) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/classic/complete: invalid Graph constructor.');
 
   var graph = new GraphClass();
 
-  for (var i = 0; i < n; i++)
+  for (var i = 0; i < order; i++)
     graph.addNode(i);
 
-  if (n > 1) {
-    var iterator = combinations(range(n), 2),
+  if (order > 1) {
+    var iterator = combinations(range(order), 2),
         path,
         step,
         path;

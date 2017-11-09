@@ -113,7 +113,7 @@ describe('graphology-generators', function() {
     });
 
     describe('#.erdosRenyi', function() {
-      var fast = random.erdosRenyi.fast;
+      var sparse = random.erdosRenyi.sparse;
 
       it('should throw if the provided constructor is invalid.', function() {
         assert.throws(function() {
@@ -121,18 +121,18 @@ describe('graphology-generators', function() {
         }, /constructor/);
 
         assert.throws(function() {
-          fast(Array);
+          sparse(Array);
         }, /constructor/);
       });
 
       it('should return a graph without edges if probability is 0.', function() {
-        var graph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0});
+        var graph = random.erdosRenyi(UndirectedGraph, {order: 5, probability: 0});
 
         assert.strictEqual(graph.order, 5);
         assert.strictEqual(graph.size, 0);
         assert.deepEqual(graph.nodes(), [0, 1, 2, 3, 4]);
 
-        graph = fast(UndirectedGraph, {n: 5, probability: 0});
+        graph = sparse(UndirectedGraph, {order: 5, probability: 0});
 
         assert.strictEqual(graph.order, 5);
         assert.strictEqual(graph.size, 0);
@@ -140,32 +140,32 @@ describe('graphology-generators', function() {
       });
 
       it('should return a binomial graph.', function() {
-        var undirectedGraph = random.erdosRenyi(UndirectedGraph, {n: 5, probability: 0.5, rng: rng()});
+        var undirectedGraph = random.erdosRenyi(UndirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(undirectedGraph.size, 7);
         assert.strictEqual(undirectedGraph.order, 5);
 
-        undirectedGraph = fast(UndirectedGraph, {n: 5, probability: 0.5, rng: rng()});
+        undirectedGraph = sparse(UndirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(undirectedGraph.size, 4);
         assert.strictEqual(undirectedGraph.order, 5);
 
-        var directedGraph = random.erdosRenyi(DirectedGraph, {n: 5, probability: 0.5, rng: rng()});
+        var directedGraph = random.erdosRenyi(DirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(directedGraph.size, 11);
         assert.strictEqual(directedGraph.order, 5);
 
-        directedGraph = fast(DirectedGraph, {n: 5, probability: 0.5, rng: rng()});
+        directedGraph = sparse(DirectedGraph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(directedGraph.size, 11);
         assert.strictEqual(directedGraph.order, 5);
 
-        var graph = random.erdosRenyi(Graph, {n: 5, probability: 0.5, rng: rng()});
+        var graph = random.erdosRenyi(Graph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(graph.size, 15);
         assert.strictEqual(graph.order, 5);
 
-        graph = fast(Graph, {n: 5, probability: 0.5, rng: rng()});
+        graph = sparse(Graph, {order: 5, probability: 0.5, rng: rng()});
 
         assert.strictEqual(graph.size, 14);
         assert.strictEqual(graph.order, 5);

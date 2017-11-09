@@ -13,7 +13,7 @@ var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
  *
  * @param  {Class}    GraphClass    - The Graph Class to instantiate.
  * @param  {object}   options       - Options:
- * @param  {number}     n           - Number of nodes in the graph.
+ * @param  {number}     order       - Number of nodes in the graph.
  * @param  {number}     probability - Probability for edge creation.
  * @param  {function}   rng         - Custom RNG function.
  * @return {Graph}
@@ -22,12 +22,14 @@ function erdosRenyi(GraphClass, options) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/random/erdos-renyi: invalid Graph constructor.');
 
-  var n = options.n,
+  var order = options.order,
       probability = options.probability,
       rng = options.rng || Math.random;
 
-  if (typeof n !== 'number' || n <= 0)
-    throw new Error('graphology-generators/random/erdos-renyi: invalid `n`. Should be a positive number.');
+  // If user gave a size, we need to compute probability
+
+  if (typeof order !== 'number' || order <= 0)
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `order`. Should be a positive number.');
 
   if (typeof probability !== 'number' || probability < 0 || probability > 1)
     throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
@@ -37,14 +39,14 @@ function erdosRenyi(GraphClass, options) {
 
   var graph = new GraphClass();
 
-  for (var i = 0; i < n; i++)
+  for (var i = 0; i < order; i++)
     graph.addNode(i);
 
   if (probability <= 0)
     return graph;
 
-  if (n > 1) {
-    var iterator = combinations(range(n), 2),
+  if (order > 1) {
+    var iterator = combinations(range(order), 2),
         path,
         step,
         path;
@@ -77,21 +79,21 @@ function erdosRenyi(GraphClass, options) {
  *
  * @param  {Class}    GraphClass    - The Graph Class to instantiate.
  * @param  {object}   options       - Options:
- * @param  {number}     n           - Number of nodes in the graph.
+ * @param  {number}     order       - Number of nodes in the graph.
  * @param  {number}     probability - Probability for edge creation.
  * @param  {function}   rng         - Custom RNG function.
  * @return {Graph}
  */
-function erdosRenyiFast(GraphClass, options) {
+function erdosRenyiSparse(GraphClass, options) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/random/erdos-renyi: invalid Graph constructor.');
 
-  var n = options.n,
+  var order = options.order,
       probability = options.probability,
       rng = options.rng || Math.random;
 
-  if (typeof n !== 'number' || n <= 0)
-    throw new Error('graphology-generators/random/erdos-renyi: invalid `n`. Should be a positive number.');
+  if (typeof order !== 'number' || order <= 0)
+    throw new Error('graphology-generators/random/erdos-renyi: invalid `order`. Should be a positive number.');
 
   if (typeof probability !== 'number' || probability < 0 || probability > 1)
     throw new Error('graphology-generators/random/erdos-renyi: invalid `probability`. Should be a number between 0 and 1.');
@@ -101,7 +103,7 @@ function erdosRenyiFast(GraphClass, options) {
 
   var graph = new GraphClass();
 
-  for (var i = 0; i < n; i++)
+  for (var i = 0; i < order; i++)
     graph.addNode(i);
 
   if (probability <= 0)
@@ -115,7 +117,7 @@ function erdosRenyiFast(GraphClass, options) {
   if (graph.type !== 'undirected') {
     v = 0;
 
-    while (v < n) {
+    while (v < order) {
       lr = Math.log(1 - rng());
       w += 1 + ((lr / lp) | 0);
 
@@ -124,8 +126,8 @@ function erdosRenyiFast(GraphClass, options) {
         w++;
       }
 
-      while (v < n && n <= w) {
-        w -= n;
+      while (v < order && order <= w) {
+        w -= order;
         v++;
 
         // Avoiding self loops
@@ -133,7 +135,7 @@ function erdosRenyiFast(GraphClass, options) {
           w++;
       }
 
-      if (v < n)
+      if (v < order)
         graph.addDirectedEdge(v, w);
     }
   }
@@ -143,17 +145,17 @@ function erdosRenyiFast(GraphClass, options) {
   if (graph.type !== 'directed') {
     v = 1;
 
-    while (v < n) {
+    while (v < order) {
       lr = Math.log(1 - rng());
 
       w += 1 + ((lr / lp) | 0);
 
-      while (w >= v && v < n) {
+      while (w >= v && v < order) {
         w -= v;
         v++;
       }
 
-      if (v < n)
+      if (v < order)
         graph.addUndirectedEdge(v, w);
     }
   }
@@ -164,5 +166,5 @@ function erdosRenyiFast(GraphClass, options) {
 /**
  * Exporting.
  */
-erdosRenyi.fast = erdosRenyiFast;
+erdosRenyi.sparse = erdosRenyiSparse;
 module.exports = erdosRenyi;
