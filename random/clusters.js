@@ -15,12 +15,12 @@ var isGraphConstructor = require('graphology-utils/is-graph-constructor');
  *
  * @param  {Class}    GraphClass    - The Graph Class to instantiate.
  * @param  {object}   options       - Options:
- * @param  {number}     density     - Probability that an edge will link two
- *                                    nodes of the same cluster.
- * @param  {number}     order       - Number of nodes.
- * @param  {number}     size        - Number of edges.
- * @param  {number}     clusters    - Number of clusters.
- * @param  {function}   rng         - Custom RNG function.
+ * @param  {number}     clusterDensity - Probability that an edge will link two
+ *                                       nodes of the same cluster.
+ * @param  {number}     order          - Number of nodes.
+ * @param  {number}     size           - Number of edges.
+ * @param  {number}     clusters       - Number of clusters.
+ * @param  {function}   rng            - Custom RNG function.
  * @return {Graph}
  */
 module.exports = function(GraphClass, options) {
@@ -29,14 +29,14 @@ module.exports = function(GraphClass, options) {
 
   options = options || {};
 
-  var density = ('density' in options) ? options.density : 0.5,
+  var clusterDensity = ('clusterDensity' in options) ? options.clusterDensity : 0.5,
       rng = options.rng || Math.random,
       N = options.order,
       E = options.size,
       C = options.clusters;
 
-  if (typeof density !== 'number' || density > 1 || density < 0)
-    throw new Error('graphology-generators/random/clusters: `density` option should be a number between 0 and 1.');
+  if (typeof clusterDensity !== 'number' || clusterDensity > 1 || clusterDensity < 0)
+    throw new Error('graphology-generators/random/clusters: `clusterDensity` option should be a number between 0 and 1.');
 
   if (typeof rng !== 'function')
     throw new Error('graphology-generators/random/clusters: `rng` option should be a function.');
@@ -83,7 +83,7 @@ module.exports = function(GraphClass, options) {
   for (i = 0; i < E; i++) {
 
     // Adding a link between two random nodes
-    if (rng() < 1 - density) {
+    if (rng() < 1 - clusterDensity) {
       source = (rng() * N) | 0;
 
       do {
@@ -100,7 +100,7 @@ module.exports = function(GraphClass, options) {
       if (!l || l < 2) {
 
         // TODO: in those case we may have fewer edges than required
-        // TODO: check where E is over full density
+        // TODO: check where E is over full clusterDensity
         continue;
       }
 

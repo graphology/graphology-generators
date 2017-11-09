@@ -63,39 +63,39 @@ describe('graphology-generators', function() {
         }, /order/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: null});
-        }, /density/);
+          random.clusters(UndirectedGraph, {clusterDensity: null});
+        }, /clusterDensity/);
 
         assert.throws(function() {
           random.clusters(UndirectedGraph, {rng: true});
         }, /rng/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5});
         }, /order/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: -10});
-        }, /density/);
+          random.clusters(UndirectedGraph, {clusterDensity: -10});
+        }, /clusterDensity/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5, order: 30});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5, order: 30});
         }, /size/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5, order: -30});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5, order: -30});
         }, /order/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: 100});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5, order: 30, size: 100});
         }, /clusters/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: -500});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5, order: 30, size: -500});
         }, /size/);
 
         assert.throws(function() {
-          random.clusters(UndirectedGraph, {density: 0.5, order: 30, size: 100, clusters: -4});
+          random.clusters(UndirectedGraph, {clusterDensity: 0.5, order: 30, size: 100, clusters: -4});
         }, /clusters/);
       });
 

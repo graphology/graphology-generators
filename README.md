@@ -72,7 +72,7 @@ const graph = clusters(Graph, {
   - **order** *number*: number of nodes of the generated graph.
   - **size** *number*: number of edges of the generated graph.
   - **clusters** *number*: number of clusters of the generated graph.
-  - **density** *?number* [`0.5`]: Probability that an edge will link two nodes of the same cluster.
+  - **clusterDensity** *?number* [`0.5`]: Probability that an edge will link two nodes of the same cluster.
   - **rng** *?function*: custom RNG function.
 
 #### Erdos-Renyi
