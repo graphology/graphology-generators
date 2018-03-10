@@ -34,8 +34,6 @@ module.exports = function krackhardtKite(GraphClass) {
     throw new Error('graphology-generators/social/krackhardt-kite: invalid Graph constructor.');
 
   var graph = new GraphClass(),
-      adj,
-      node,
       i,
       l;
 

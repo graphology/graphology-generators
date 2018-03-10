@@ -5,7 +5,7 @@
  * Function generating path graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    addPath = require('graphology-utils/add-path');
+    addPath = require('graphology-utils/add-path'),
     range = require('lodash/range');
 
 /**

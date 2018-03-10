@@ -88,7 +88,7 @@ module.exports = function(GraphClass, options) {
 
       do {
         target = (rng() * N) | 0;
-      } while (source === target)
+      } while (source === target);
     }
 
     // Adding a link between two nodes from the same cluster
@@ -108,7 +108,7 @@ module.exports = function(GraphClass, options) {
 
       do {
         target = nodes[(rng() * l) | 0];
-      } while (source === target)
+      } while (source === target);
     }
 
     if (!graph.multi)

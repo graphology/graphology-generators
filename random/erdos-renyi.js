@@ -53,8 +53,7 @@ function erdosRenyi(GraphClass, options) {
   if (order > 1) {
     var iterator = combinations(range(order), 2),
         path,
-        step,
-        path;
+        step;
 
     while ((step = iterator.next(), !step.done)) {
       path = step.value;
@@ -172,7 +171,7 @@ function erdosRenyiSparse(GraphClass, options) {
   }
 
   return graph;
-};
+}
 
 /**
  * Exporting.
