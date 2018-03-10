@@ -61,7 +61,7 @@ var CLUB1 = new Set([
  * @param  {Class} GraphClass - The Graph Class to instantiate.
  * @return {Graph}
  */
-module.exports = function karateClub(GraphClass, options) {
+module.exports = function karateClub(GraphClass) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/social/karate: invalid Graph constructor.');
 

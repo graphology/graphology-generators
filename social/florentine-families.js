@@ -43,7 +43,7 @@ var EDGES = [
  * @param  {Class} GraphClass - The Graph Class to instantiate.
  * @return {Graph}
  */
-module.exports = function florentineFamilies(GraphClass, options) {
+module.exports = function florentineFamilies(GraphClass) {
   if (!isGraphConstructor(GraphClass))
     throw new Error('graphology-generators/social/florentine-families: invalid Graph constructor.');
 

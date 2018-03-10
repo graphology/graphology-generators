@@ -15,6 +15,7 @@ var rng = function() {
 
 var classic = require('./classic'),
     random = require('./random'),
+    small = require('./small'),
     social = require('./social');
 
 describe('graphology-generators', function() {
@@ -222,6 +223,24 @@ describe('graphology-generators', function() {
 
         assert.strictEqual(graph.order, 128);
         assert.strictEqual(graph.size, 1042);
+      });
+    });
+  });
+
+  describe('small', function() {
+
+    describe('#.krackhardtKite', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          small.krackhardtKite(Array);
+        }, /constructor/);
+      });
+
+      it('should return Krackhard\'s kite graph.', function() {
+        var graph = small.krackhardtKite(UndirectedGraph);
+
+        assert.strictEqual(graph.order, 10);
+        assert.strictEqual(graph.size, 18);
       });
     });
   });

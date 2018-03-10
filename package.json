@@ -7,10 +7,11 @@
     "index.js",
     "classic",
     "random",
+    "small",
     "social"
   ],
   "scripts": {
-    "lint": "eslint *.js",
+    "lint": "eslint **/*.js",
     "test": "mocha test.js"
   },
   "repository": {
@@ -23,6 +24,7 @@
     "generators",
     "erdos renyi",
     "karate club",
+    "krackhardt kite",
     "girvan newman"
   ],
   "author": {
@@ -46,7 +48,7 @@
   },
   "dependencies": {
     "graphology-metrics": "^1.3.0",
-    "graphology-utils": "^1.2.1",
+    "graphology-utils": "^1.2.2",
     "lodash": "^4.16.3",
     "obliterator": "^1.1.0"
   }

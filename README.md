@@ -19,6 +19,8 @@ npm install graphology-generators
   - [Clusters](#clusters)
   - [Erdos-Renyi](#erdos-renyi)
   - [Girvan-Newman](#girvan-newman)
+* [Small graphs](#small-graphs)
+  - [Krackhardt Kite](#krackhardt-kite)
 * [Social graphs](#social-graphs)
   - [Florentine Families](#florentine-families)
   - [Karate Club](#karate-club)
@@ -148,6 +150,26 @@ const graph = girvanNewman(Graph, {zOut: 4});
 * **options** *object*: options:
   - **zOut** *number*: *zout* parameter.
   - **rng** *?function*: custom RNG function.
+
+### Small graphs
+
+#### Krackhardt kite
+
+Returns the [Krackhardt kite](https://en.wikipedia.org/wiki/Krackhardt_kite_graph) graph.
+
+```js
+import Graph from 'graphology';
+import {krackhardtKite} from 'graphology-generators/small';
+// Alternatively, if you only want to load relevant code
+import krackhardtKite from 'graphology-generators/small/krackhardt-kite';
+
+// Creating a random clustered graph
+const graph = krackhardtKite(Graph);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
 
 ### Social graphs
 
