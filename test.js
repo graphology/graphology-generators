@@ -48,6 +48,22 @@ describe('graphology-generators', function() {
       });
     });
 
+    describe('#.empty', function() {
+
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          classic.empty(Array);
+        }, /constructor/);
+      });
+
+      it('should return an empty graph.', function() {
+        var emptyGraph = classic.empty(Graph, 6);
+
+        assert.strictEqual(emptyGraph.order, 6);
+        assert.strictEqual(emptyGraph.size, 0);
+      });
+    });
+
     describe('#.path', function() {
       it('should throw if the provided constructor is invalid.', function() {
         assert.throws(function() {

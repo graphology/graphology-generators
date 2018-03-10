@@ -14,6 +14,7 @@ npm install graphology-generators
 
 * [Classic graphs](#classic-graphs)
   - [Complete](#complete)
+  - [Empty](#empty)
   - [Path](#path)
 * [Random graphs](#random-graphs)
   - [Clusters](#clusters)
@@ -42,6 +43,28 @@ const graph = complete(Graph, 10);
 
 // Using another constuctor to create, say, a complete undirected graph
 const graph = complete(UndirectedGraph, 10);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **order** *number*: number of nodes in the generated graph.
+
+#### Empty
+
+Creates an empty graph with the desired number of nodes and no edges.
+
+```js
+import Graph, {UndirectedGraph} from 'graphology';
+import {empty} from 'graphology-generators/classic';
+// Alternatively, if you only want to load relevant code
+import empty from 'graphology-generators/classic/empty';
+
+// Creating an empty graph
+const graph = empty(Graph, 10);
+
+// Using another constuctor to create, say, an empty undirected graph
+const graph = empty(UndirectedGraph, 10);
 ```
 
 **Arguments**
