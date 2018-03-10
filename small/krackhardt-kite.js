@@ -5,7 +5,7 @@
  * Function generating the Krackhardt kite graph.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    addStar = require('graphology-utils/add-star');
+    mergeStar = require('graphology-utils/merge-star');
 
 /**
  * Data.
@@ -38,7 +38,7 @@ module.exports = function krackhardtKite(GraphClass) {
       l;
 
   for (i = 0, l = ADJACENCY.length; i < l; i++)
-    addStar(graph, ADJACENCY[i]);
+    mergeStar(graph, ADJACENCY[i]);
 
   return graph;
 };

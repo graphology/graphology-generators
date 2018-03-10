@@ -5,7 +5,7 @@
  * Function generating path graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    addPath = require('graphology-utils/add-path'),
+    mergePath = require('graphology-utils/merge-path'),
     range = require('lodash/range');
 
 /**
@@ -21,7 +21,7 @@ module.exports = function path(GraphClass, order) {
 
   var graph = new GraphClass();
 
-  addPath(graph, range(order));
+  mergePath(graph, range(order));
 
   return graph;
 };
