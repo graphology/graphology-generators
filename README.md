@@ -15,6 +15,7 @@ npm install graphology-generators
 * [Classic graphs](#classic-graphs)
   - [Complete](#complete)
   - [Empty](#empty)
+  - [Ladder](#ladder)
   - [Path](#path)
 * [Random graphs](#random-graphs)
   - [Clusters](#clusters)
@@ -71,6 +72,28 @@ const graph = empty(UndirectedGraph, 10);
 
 * **constructor** *Class*: a `graphology` constructor.
 * **order** *number*: number of nodes in the generated graph.
+
+#### Ladder
+
+Creates a ladder graph with the desired length. Note that the generated graph will logically have twice the number of nodes.
+
+```js
+import Graph, {UndirectedGraph} from 'graphology';
+import {ladder} from 'graphology-generators/classic';
+// Alternatively, if you only want to load relevant code
+import ladder from 'graphology-generators/classic/ladder';
+
+// Creating a ladder graph
+const graph = ladder(Graph, 10);
+
+// Using another constuctor to create, say, a undirected ladder graph
+const graph = ladder(UndirectedGraph, 10);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **length** *number*: length of the ladder.
 
 #### Path
 

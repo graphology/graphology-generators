@@ -64,6 +64,24 @@ describe('graphology-generators', function() {
       });
     });
 
+    describe('#.ladder', function() {
+
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          classic.ladder(Array);
+        }, /constructor/);
+      });
+
+      it('should return a valid ladder graph.', function() {
+        var length = 50;
+
+        var ladder = classic.ladder(UndirectedGraph, length);
+
+        assert.strictEqual(ladder.order, length * 2);
+        assert.strictEqual(ladder.size, (length - 1) * 2 + length);
+      });
+    });
+
     describe('#.path', function() {
       it('should throw if the provided constructor is invalid.', function() {
         assert.throws(function() {
