@@ -14,6 +14,7 @@ npm install graphology-generators
 
 * [Classic graphs](#classic-graphs)
   - [Complete](#complete)
+  - [Path](#path)
 * [Random graphs](#random-graphs)
   - [Clusters](#clusters)
   - [Erdos-Renyi](#erdos-renyi)
@@ -38,6 +39,28 @@ const graph = complete(Graph, 10);
 
 // Using another constuctor to create, say, a complete undirected graph
 const graph = complete(UndirectedGraph, 10);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **order** *number*: number of nodes in the generated graph.
+
+#### Path
+
+Creates a path graph. 
+
+```js
+import Graph, {UndirectedGraph} from 'graphology';
+import {path} from 'graphology-generators/classic';
+// Alternatively, if you only want to load relevant code
+import path from 'graphology-generators/classic/path';
+
+// Creating a path graph
+const graph = path(Graph, 10);
+
+// Using another constuctor to create, say, a path undirected graph
+const graph = path(UndirectedGraph, 10);
 ```
 
 **Arguments**

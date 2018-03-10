@@ -46,6 +46,27 @@ describe('graphology-generators', function() {
         assert.strictEqual(graph.size, (5 * (5 - 1) / 2) + (5 * (5 - 1)));
       });
     });
+
+    describe('#.path', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          classic.path(Array);
+        }, /constructor/);
+      });
+
+      it('should return a complete graph.', function() {
+        var graph = classic.path(Graph, 5);
+
+        assert.strictEqual(graph.order, 5);
+        assert.strictEqual(graph.size, 4);
+
+        var adj = graph.edges().map(function(e) {
+          return graph.extremities(e);
+        });
+
+        assert.deepEqual(adj, [[0, 1], [1, 2], [2, 3], [3, 4]]);
+      });
+    });
   });
 
   describe('random', function() {
