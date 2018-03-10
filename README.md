@@ -20,6 +20,7 @@ npm install graphology-generators
   - [Erdos-Renyi](#erdos-renyi)
   - [Girvan-Newman](#girvan-newman)
 * [Social graphs](#social-graphs)
+  - [Florentine Families](#florentine-families)
   - [Karate Club](#karate-club)
 
 ### Classic graphs
@@ -150,6 +151,24 @@ const graph = girvanNewman(Graph, {zOut: 4});
 
 ### Social graphs
 
+#### Florentine Families
+
+Returns the Florentine families' graph.
+
+```js
+import Graph from 'graphology';
+import {florentineFamilies} from 'graphology-generators/florentine-families';
+// Alternatively, if you only want to load relevant code
+import florentineFamilies from 'graphology-generators/social/florentine-families';
+
+// Generating the graph
+const graph = florentineFamilies(Graph);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+
 #### Karate Club
 
 Returns [Zachary's karate club](https://en.wikipedia.org/wiki/Zachary%27s_karate_club) graph.
@@ -160,7 +179,7 @@ import {karateClub} from 'graphology-generators/karate-club';
 // Alternatively, if you only want to load relevant code
 import karateClub from 'graphology-generators/social/karate-club';
 
-// Creating a binomial graph
+// Generating the graph
 const graph = karateClub(Graph);
 ```
 

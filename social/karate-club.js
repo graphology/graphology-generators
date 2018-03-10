@@ -58,7 +58,7 @@ var CLUB1 = new Set([
 /**
  * Function generating the karate club graph.
  *
- * @param  {Class} GraphClass    - The Graph Class to instantiate.
+ * @param  {Class} GraphClass - The Graph Class to instantiate.
  * @return {Graph}
  */
 module.exports = function karateClub(GraphClass, options) {

@@ -242,5 +242,20 @@ describe('graphology-generators', function() {
         assert.strictEqual(graph.size, 78);
       });
     });
+
+    describe('#.florentineFamilies', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          social.florentineFamilies(Array);
+        }, /constructor/);
+      });
+
+      it('should return Florentine families graph.', function() {
+        var graph = social.florentineFamilies(Graph);
+
+        assert.strictEqual(graph.order, 15);
+        assert.strictEqual(graph.size, 20);
+      });
+    });
   });
 });
