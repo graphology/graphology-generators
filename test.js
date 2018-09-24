@@ -119,11 +119,30 @@ describe('graphology-generators', function() {
         var graph = community.caveman(UndirectedGraph, 6, 8);
 
         assert.strictEqual(graph.order, 6 * 8);
-        assert.strictEqual(graph.size, 210);
+        assert.strictEqual(graph.size, 168);
 
         var components = connectedComponents(graph);
 
         assert.strictEqual(components.length, 6);
+      });
+    });
+
+    describe('#.connectedCaveman', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          community.connectedCaveman(Array);
+        }, /constructor/);
+      });
+
+      it('should return a connected caveman graph.', function() {
+        var graph = community.connectedCaveman(UndirectedGraph, 6, 8);
+
+        assert.strictEqual(graph.order, 6 * 8);
+        assert.strictEqual(graph.size, 168);
+
+        var components = connectedComponents(graph);
+
+        assert.strictEqual(components.length, 1);
       });
     });
   });

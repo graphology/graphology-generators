@@ -19,6 +19,7 @@ npm install graphology-generators
   - [Path](#path)
 * [Community graphs](#community-graphs)
   - [Caveman](#caveman)
+  - [Connected Caveman](#connected-caveman)
 * [Random graphs](#random-graphs)
   - [Clusters](#clusters)
   - [Erdos-Renyi](#erdos-renyi)
@@ -123,7 +124,7 @@ const graph = path(UndirectedGraph, 10);
 
 #### Caveman
 
-Creates a Caveman graph of `l` components of `k` nodes.
+Creates a Caveman graph containing `l` components of `k` nodes.
 
 ```js
 import Graph, {UndirectedGraph} from 'graphology';
@@ -133,6 +134,26 @@ import caveman from 'graphology-generators/community/caveman';
 
 // Creating a caveman graph
 const graph = caveman(Graph, 6, 8);
+```
+
+**Arguments**
+
+* **constructor** *Class*: a `graphology` constructor.
+* **l** *number*: number of components in the graph.
+* **k** *number*: number of nodes of the components.
+
+#### Connected Caveman
+
+Creates a Connected Caveman graph containing `l` components of `k` nodes.
+
+```js
+import Graph, {UndirectedGraph} from 'graphology';
+import {connectedCaveman} from 'graphology-generators/community';
+// Alternatively, if you only want to load relevant code
+import connectedCaveman from 'graphology-generators/community/connected-caveman';
+
+// Creating a connected caveman graph
+const graph = connectedCaveman(Graph, 6, 8);
 ```
 
 **Arguments**
