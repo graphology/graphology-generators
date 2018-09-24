@@ -6,6 +6,7 @@
   "files": [
     "index.js",
     "classic",
+    "community",
     "random",
     "small",
     "social"
@@ -40,6 +41,7 @@
     "@yomguithereal/eslint-config": "^4.0.0",
     "eslint": "^4.0.0",
     "graphology": "^0.11.4",
+    "graphology-components": "^0.1.0",
     "graphology-gexf": "^0.5.0",
     "mocha": "^5.2.0",
     "seedrandom": "^2.4.4"

@@ -4,7 +4,8 @@
  */
 var assert = require('assert'),
     Graph = require('graphology'),
-    seedrandom = require('seedrandom');
+    seedrandom = require('seedrandom'),
+    connectedComponents = require('graphology-components').connectedComponents;
 
 var UndirectedGraph = Graph.UndirectedGraph,
     DirectedGraph = Graph.DirectedGraph;
@@ -14,6 +15,7 @@ var rng = function() {
 };
 
 var classic = require('./classic'),
+    community = require('./community'),
     random = require('./random'),
     small = require('./small'),
     social = require('./social');
@@ -100,6 +102,28 @@ describe('graphology-generators', function() {
         });
 
         assert.deepEqual(adj, [[0, 1], [1, 2], [2, 3], [3, 4]]);
+      });
+    });
+  });
+
+  describe('community', function() {
+
+    describe('#.caveman', function() {
+      it('should throw if the provided constructor is invalid.', function() {
+        assert.throws(function() {
+          community.caveman(Array);
+        }, /constructor/);
+      });
+
+      it('should return a caveman graph.', function() {
+        var graph = community.caveman(UndirectedGraph, 6, 8);
+
+        assert.strictEqual(graph.order, 6 * 8);
+        assert.strictEqual(graph.size, 210);
+
+        var components = connectedComponents(graph);
+
+        assert.strictEqual(components.length, 6);
       });
     });
   });
