@@ -39,10 +39,10 @@
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
     "eslint": "^4.0.0",
-    "graphology": "^0.11.1",
-    "graphology-gexf": "^0.3.1",
-    "mocha": "^5.0.4",
-    "seedrandom": "^2.4.2"
+    "graphology": "^0.11.4",
+    "graphology-gexf": "^0.5.0",
+    "mocha": "^5.2.0",
+    "seedrandom": "^2.4.4"
   },
   "eslintConfig": {
     "extends": "@yomguithereal/eslint-config",
@@ -51,9 +51,9 @@
     }
   },
   "dependencies": {
-    "graphology-metrics": "^1.3.0",
+    "graphology-metrics": "^1.6.0",
     "graphology-utils": "^1.3.0",
     "lodash": "^4.16.3",
-    "obliterator": "^1.1.0"
+    "obliterator": "^1.3.0"
   }
 }
