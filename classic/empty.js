@@ -4,8 +4,7 @@
  *
  * Function generating empty graphs.
  */
-var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    range = require('lodash/range');
+var isGraphConstructor = require('graphology-utils/is-graph-constructor');
 
 /**
  * Generates an empty graph with n nodes and 0 edges.
@@ -20,7 +19,10 @@ module.exports = function empty(GraphClass, order) {
 
   var graph = new GraphClass();
 
-  graph.addNodesFrom(range(order));
+  var i;
+
+  for (i = 0; i < order; i++)
+    graph.addNode(i);
 
   return graph;
 };
