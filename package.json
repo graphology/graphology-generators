@@ -56,7 +56,6 @@
   "dependencies": {
     "graphology-metrics": "^1.14.0",
     "graphology-utils": "^1.8.0",
-    "lodash": "^4.17.20",
-    "obliterator": "^1.6.1"
+    "lodash": "^4.17.20"
   }
 }

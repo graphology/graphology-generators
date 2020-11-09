@@ -4,9 +4,7 @@
  *
  * Function generating complete graphs.
  */
-var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    combinations = require('obliterator/combinations'),
-    range = require('lodash/range');
+var isGraphConstructor = require('graphology-utils/is-graph-constructor');
 
 /**
  * Generates a complete graph with n nodes.
@@ -21,23 +19,20 @@ module.exports = function complete(GraphClass, order) {
 
   var graph = new GraphClass();
 
-  for (var i = 0; i < order; i++)
+  var i, j;
+
+  for (i = 0; i < order; i++)
     graph.addNode(i);
 
-  if (order > 1) {
-    var iterator = combinations(range(order), 2),
-        path,
-        step;
-
-    while ((step = iterator.next(), !step.done)) {
-      path = step.value;
+  for (i = 0; i < order; i++) {
+    for (j = i + 1; j < order; j++) {
 
       if (graph.type !== 'directed')
-        graph.addUndirectedEdge(path[0], path[1]);
+        graph.addUndirectedEdge(i, j);
 
       if (graph.type !== 'undirected') {
-        graph.addDirectedEdge(path[0], path[1]);
-        graph.addDirectedEdge(path[1], path[0]);
+        graph.addDirectedEdge(i, j);
+        graph.addDirectedEdge(j, i);
       }
     }
   }

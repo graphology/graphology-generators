@@ -5,8 +5,6 @@
  * Function generating binomial graphs.
  */
 var isGraphConstructor = require('graphology-utils/is-graph-constructor'),
-    combinations = require('obliterator/combinations'),
-    range = require('lodash/range'),
     density = require('graphology-metrics/density');
 
 /**
@@ -44,32 +42,28 @@ function erdosRenyi(GraphClass, options) {
   if (typeof rng !== 'function')
     throw new Error('graphology-generators/random/erdos-renyi: invalid `rng`. Should be a function.');
 
-  for (var i = 0; i < order; i++)
+  var i, j;
+
+  for (i = 0; i < order; i++)
     graph.addNode(i);
 
   if (probability <= 0)
     return graph;
 
-  if (order > 1) {
-    var iterator = combinations(range(order), 2),
-        path,
-        step;
-
-    while ((step = iterator.next(), !step.done)) {
-      path = step.value;
-
+  for (i = 0; i < order; i++) {
+    for (j = i + 1; j < order; j++) {
       if (graph.type !== 'directed') {
         if (rng() < probability)
-          graph.addUndirectedEdge(path[0], path[1]);
+          graph.addUndirectedEdge(i, j);
       }
 
       if (graph.type !== 'undirected') {
 
         if (rng() < probability)
-          graph.addDirectedEdge(path[0], path[1]);
+          graph.addDirectedEdge(i, j);
 
         if (rng() < probability)
-          graph.addDirectedEdge(path[1], path[0]);
+          graph.addDirectedEdge(j, i);
       }
     }
   }
